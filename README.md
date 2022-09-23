@@ -20,6 +20,7 @@
 
 ### ⚙️ Setup
 
+*Optional: If you want to use a copy of this repository, you can fork it to your own GitHub account.*
 1. Above the list of files, click ↓Code.
 2. Using HTTPS, under "Clone with HTTPS", click the clipboard icon.
 3. In the terminal, change the current working directory to the location where you want the cloned directory to be made.
