@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     public float jumpForce = 10;
     public float gravityModifier = 1;
+    private bool isOnGround = true;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // Get the rigidbody component
         playerRb = GetComponent<Rigidbody>();
@@ -19,11 +20,22 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
+    }
+
+    // OnCollisionEnter is called when the player collides with an object
+    private void OnCollisionEnter(Collision collision)
+    {   
+        // Check if touch the ground
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
         }
     }
 }
