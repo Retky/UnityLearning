@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7710059028496820778}
   - component: {fileID: 208050942822470131}
   - component: {fileID: 5198246199784718892}
+  - component: {fileID: 1705507407211348048}
   m_Layer: 0
   m_Name: Obst_Barrier
   m_TagString: Untagged
@@ -159,4 +160,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b90b9ff2344cd0438900c849d1e0499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+--- !u!114 &1705507407211348048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329210317000181823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f99babc9c0ccde4c9a4cc9f1869fd5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
