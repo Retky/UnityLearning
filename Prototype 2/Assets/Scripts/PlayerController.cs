@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // End game if player runs out of lives
+        if (lives < 1)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+
         // Get user input
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
