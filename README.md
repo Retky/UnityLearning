@@ -21,6 +21,8 @@
 ### ⚙️ Setup
 
 *Optional: If you want to use a copy of this repository, you can fork it to your own GitHub account.*
+
+0. **SELECT A PROJECT**: You can select an specific project to clone by selecting the branch in the dropdown menu in the top left corner of the repository. If you want to clone all the projects, you can clone the `dev` branch.
 1. Above the list of files, click ↓Code.
 2. Using HTTPS, under "Clone with HTTPS", click the clipboard icon.
 3. In the terminal, change the current working directory to the location where you want the cloned directory to be made.
