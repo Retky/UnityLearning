@@ -7,7 +7,6 @@ public class EnemyBehavior : MonoBehaviour
     // Initialize variables
     private Rigidbody enemyRb;
     public float speed = 5.0f;
-
     // Initialize Reference Variables
     private GameObject player;
 
