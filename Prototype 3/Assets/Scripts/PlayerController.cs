@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
         // Get the audio source component
         playerAudio = GetComponent<AudioSource>();
+
+        // Start coroutine
+        StartCoroutine(PlayIntro());
     }
 
     // Update is called once per frame
@@ -63,6 +66,24 @@ public class PlayerController : MonoBehaviour
             dirtParticle.Stop();
             playerAnim.SetBool("Death_b", true);
             gameOver = true;
+        }
+    }
+
+    // Play intro
+    IEnumerator PlayIntro()
+    {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(0, 0, 0);
+        float duration = 1.5f;
+        float time = 0;
+
+        playerAnim.SetFloat("Speed_f", 0.5f);
+
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, time / duration);
+            time += Time.deltaTime;
+            yield return null;
         }
     }
 }
