@@ -246,7 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca778163ef27ac4ba2838dda95ac395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 329210317000181823, guid: 94a9ec9713c559f4e83ddc1cdc26d27e, type: 3}
+  obstaclePrefab:
+  - {fileID: 329210317000181823, guid: 94a9ec9713c559f4e83ddc1cdc26d27e, type: 3}
+  - {fileID: 8124976906864328046, guid: fa242534f84ed3043a643f756d13c424, type: 3}
+  - {fileID: 858921503953832826, guid: 9e106e8fc1bc9dc4b9edd54557e36249, type: 3}
+  - {fileID: 8092627594338399549, guid: 99f35010eb35bd34db2af38df9cd302a, type: 3}
+  - {fileID: 1711809684463558947, guid: 314163d4f8e75944cb531726b80ceb77, type: 3}
 --- !u!4 &194513473
 Transform:
   m_ObjectHideFlags: 0
@@ -634,6 +639,10 @@ PrefabInstance:
     - target: {fileID: 9278908813126703, guid: 9291fad0c8ce63e448bfc57a57d5b8b9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212933208392628514, guid: 9291fad0c8ce63e448bfc57a57d5b8b9, type: 3}
+      propertyPath: gravityModifier
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9291fad0c8ce63e448bfc57a57d5b8b9, type: 3}

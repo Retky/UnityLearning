@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip crashSound;
     public float jumpForce = 10;
     public float gravityModifier = 1;
-    private bool isOnGround = true;
+    private int jumpCount = 0;
     public bool gameOver = false;
 
     // Start is called before the first frame update
@@ -34,12 +34,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isOnGround && !gameOver)
+        if (Input.GetButtonDown("Jump") && jumpCount < 2 && !gameOver)
         {
             // Jump
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             playerAudio.PlayOneShot(jumpSound, 1.0f);
-            isOnGround = false;
+            jumpCount++;
             dirtParticle.Stop();
             playerAnim.SetTrigger("Jump_trig");
         }
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         // Check if touch the ground
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isOnGround = true;
+            jumpCount = 0;
             dirtParticle.Play();
         }
 

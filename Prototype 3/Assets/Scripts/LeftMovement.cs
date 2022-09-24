@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LeftMovement : MonoBehaviour
 {
-    private float speed = 28;
+    private float speed = 23;
     private PlayerController playerControllerScript;
 
     // Start is called before the first frame update
@@ -16,6 +16,17 @@ public class LeftMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {   
+        // Move faster if shift is pressed
+        if (Input.GetButtonDown("Dash"))
+        {
+            Debug.Log($"Dash");
+            speed = 38;
+        }
+        else if (Input.GetButtonUp("Dash"))
+        {
+            speed = 23;
+        }
+
         // If the game is not over
         if (!playerControllerScript.gameOver)
         {
