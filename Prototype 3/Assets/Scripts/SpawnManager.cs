@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     // Initialize variables
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefab;
     private Vector3 spawnPos = new Vector3(35, 0, 0);
     private PlayerController playerControllerScript;
 
@@ -25,8 +25,11 @@ public class SpawnManager : MonoBehaviour
         // If the game is not over
         if (!playerControllerScript.gameOver)
         {
+            // Generate a random index
+            int obstacleIndex = Random.Range(0, obstaclePrefab.Length);
+
             // Spawn an obstacle
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            Instantiate(obstaclePrefab[obstacleIndex], spawnPos, obstaclePrefab[obstacleIndex].transform.rotation);
         }
     }
 }
