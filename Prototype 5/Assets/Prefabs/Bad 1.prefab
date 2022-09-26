@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624f90c0b2d7cc04db7bc08975081332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionParticle: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
+  pointValue: 25
 --- !u!136 &-3592559680445597698
 CapsuleCollider:
   m_ObjectHideFlags: 0
