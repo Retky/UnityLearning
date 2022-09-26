@@ -24,5 +24,11 @@ public class EnemyBehavior : MonoBehaviour
         // Move the enemy towards the player
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+
+        // If the enemy falls off the map, destroy it
+        if (transform.position.y < -2.5)
+        {
+            Destroy(gameObject);
+        }
     }
 }
