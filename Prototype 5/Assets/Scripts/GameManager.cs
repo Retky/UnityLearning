@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,13 +12,17 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI livesText;
+    public Button restartButton;
     public int lives;
     private int score;
+    public bool isGameActive;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        restartButton.gameObject.SetActive(false);
+        isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
         scoreText.text = "Score: " + score;
@@ -26,12 +32,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameActive = false;
         gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
     }
 
     IEnumerator SpawnTarget()
     {
-        while (true)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
@@ -54,5 +62,10 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
