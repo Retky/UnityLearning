@@ -49,7 +49,7 @@ public class Target : MonoBehaviour
             gameManager.UpdateScore(pointValue);
         } else if (gameObject.CompareTag("Bad"))
         {
-            gameManager.UpdateScore(-pointValue);
+            gameManager.UpdateLife(-1);
         }
     }
 
