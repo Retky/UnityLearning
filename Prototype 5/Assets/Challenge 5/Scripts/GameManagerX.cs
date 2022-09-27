@@ -9,6 +9,7 @@ public class GameManagerX : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI timerText;
     public GameObject titleScreen;
     public Button restartButton; 
 
@@ -16,16 +17,33 @@ public class GameManagerX : MonoBehaviour
 
     private int score;
     private float spawnRate = 1.5f;
+    private float gameTimer = 10;
     public bool isGameActive;
 
     private float spaceBetweenSquares = 2.5f; 
     private float minValueX = -3.75f; //  x value of the center of the left-most square
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
-    
-    // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
-    public void StartGame()
+
+    void Update()
     {
-        spawnRate /= 5;
+        if (isGameActive)
+        {
+            // If game is active, count down from gameTimer and update UI
+            gameTimer -= 1 * Time.deltaTime;
+            timerText.text = "Time: " + Mathf.Round(gameTimer);
+        }
+
+        if (gameTimer <= 0)
+        {
+            // If gameTimer reaches 0, end game
+            GameOver();
+        }
+    }
+
+    // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
+    public void StartGame(int difficulty)
+    {
+        spawnRate /= difficulty * 2;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
@@ -70,14 +88,14 @@ public class GameManagerX : MonoBehaviour
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        scoreText.text = "score";
+        scoreText.text = "score: " + score;
     }
 
     // Stop game, bring up game over text and restart button
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(true);
         isGameActive = false;
     }
 
