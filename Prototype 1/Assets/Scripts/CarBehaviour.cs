@@ -18,7 +18,7 @@ public class CarBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // If the game is active
         if (gameManager.isGameActive)
