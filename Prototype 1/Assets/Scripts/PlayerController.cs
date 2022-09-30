@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     [SerializeField] private GameObject[] frontWheels;
     [SerializeField] private GameObject[] rearWheels;
-    private float verticalInput;
-    private float horizontalInput;
+    protected float verticalInput;
+    protected float horizontalInput;
 
     // Intialize variables
     [SerializeField] private float horsePower = 1500;
@@ -27,10 +27,13 @@ public class PlayerController : MonoBehaviour
     // Cameras
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Camera subCamera;
+    protected string cameraButton;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
+        cameraButton = "Camera1";
+
         // Get the game manager
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
@@ -48,9 +51,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // Get user inputs
-        verticalInput = Input.GetAxis("Vertical1");
-        horizontalInput = Input.GetAxis("Horizontal1");
+        GetInputs();
 
         // Update current values
         currentAcceleration = verticalInput * horsePower;
@@ -59,10 +60,17 @@ public class PlayerController : MonoBehaviour
         // Update wheel positions
         frontWheels[0].transform.localRotation = Quaternion.Euler(0, currentSteerAngle, 0);
         frontWheels[1].transform.localRotation = Quaternion.Euler(0, currentSteerAngle, 0);
+
+        // Switch cameras
+        if (Input.GetButtonDown(cameraButton))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            subCamera.enabled = !subCamera.enabled;
+        }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    // FixedUpdate is called once per frame at a fixed time interval (physics)
+    private void FixedUpdate()
     {
         // Player movement
         if (gameManager.isGameActive)
@@ -73,12 +81,13 @@ public class PlayerController : MonoBehaviour
             WheelColliderRear1.motorTorque = currentAcceleration;
             WheelColliderRear2.motorTorque = currentAcceleration;
         }
+    }
 
-        // Switch cameras
-        if (Input.GetButtonDown("Camera1"))
-        {
-            mainCamera.enabled = !mainCamera.enabled;
-            subCamera.enabled = !subCamera.enabled;
-        }
+    // Set the user inputs
+    protected virtual void GetInputs()
+    {
+        // Get user inputs
+        verticalInput = Input.GetAxis("Vertical1");
+        horizontalInput = Input.GetAxis("Horizontal1");
     }
 }
