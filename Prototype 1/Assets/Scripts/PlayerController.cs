@@ -6,14 +6,24 @@ public class PlayerController : MonoBehaviour
 {
     // Initialize import variables
     private GameManager gameManager;
-    private Rigidbody playerRb;
+    [SerializeField] private GameObject[] frontWheels;
+    [SerializeField] private GameObject[] rearWheels;
+    private float verticalInput;
     private float horizontalInput;
-    private float forwardInput;
-    [SerializeField] GameObject centerOfMass;
 
-    // Initialize variables
-    [SerializeField] private float horsePower = 0;
-    [SerializeField] private float turnSpeed = 30.0f;
+    // Intialize variables
+    [SerializeField] private float horsePower = 1500;
+    // [SerializeField] private float breakPower = 1000;
+    [SerializeField] private float maxSteerAngle = 30;
+    private float currentAcceleration = 0;
+    private float currentSteerAngle = 0;
+    
+    // Initialize wheel colliders
+    private WheelCollider WheelColliderFront1;
+    private WheelCollider WheelColliderFront2;
+    private WheelCollider WheelColliderRear1;
+    private WheelCollider WheelColliderRear2;
+
     // Cameras
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Camera subCamera;
@@ -24,28 +34,44 @@ public class PlayerController : MonoBehaviour
         // Get the game manager
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        // Get the player rigidbody
-        playerRb = GetComponent<Rigidbody>();
-        playerRb.centerOfMass = centerOfMass.transform.localPosition;
+        // Initialize wheel colliders
+        WheelColliderFront1 = frontWheels[0].GetComponent<WheelCollider>();
+        WheelColliderFront2 = frontWheels[1].GetComponent<WheelCollider>();
+        WheelColliderRear1 = rearWheels[0].GetComponent<WheelCollider>();
+        WheelColliderRear2 = rearWheels[1].GetComponent<WheelCollider>();
+
         // Set the main camera to active
         mainCamera.enabled = true;
         subCamera.enabled = false;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        // This get the player inputs
-        forwardInput = Input.GetAxis("Vertical1");
+        // Get user inputs
+        verticalInput = Input.GetAxis("Vertical1");
         horizontalInput = Input.GetAxis("Horizontal1");
 
+        // Update current values
+        currentAcceleration = verticalInput * horsePower;
+        currentSteerAngle = horizontalInput * maxSteerAngle;
+
+        // Update wheel positions
+        frontWheels[0].transform.localRotation = Quaternion.Euler(0, currentSteerAngle, 0);
+        frontWheels[1].transform.localRotation = Quaternion.Euler(0, currentSteerAngle, 0);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         // Player movement
         if (gameManager.isGameActive)
         {
-            // Move the car forward
-            playerRb.AddRelativeForce(Vector3.forward * forwardInput * (horsePower * 10));
-            // Turn the car
-            transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
+            // Update wheel colliders
+            WheelColliderFront1.steerAngle = currentSteerAngle;
+            WheelColliderFront2.steerAngle = currentSteerAngle;
+            WheelColliderRear1.motorTorque = currentAcceleration;
+            WheelColliderRear2.motorTorque = currentAcceleration;
         }
 
         // Switch cameras
