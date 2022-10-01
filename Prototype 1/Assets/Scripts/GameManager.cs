@@ -1,14 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     // Initialize variables
     public bool isGameActive = false;
     public GameObject titleScreen;
+    public Button restartButton;
     public GameObject player1;
     public GameObject player2;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (player2.activeInHierarchy == false && player1.GetComponent<Rigidbody>().position.y < -3)
+        {
+            isGameActive = false;
+            restartButton.gameObject.SetActive(true);
+        } else if (player1.GetComponent<Rigidbody>().position.y < -3 && player2.GetComponent<Rigidbody>().position.y < -3)
+        {
+            isGameActive = false;
+            restartButton.gameObject.SetActive(true);
+        }
+    }
 
     public void StartGame()
     {
@@ -20,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         // Quit the game
         Application.Quit();
     }
@@ -49,5 +65,11 @@ public class GameManager : MonoBehaviour
 
         // Move player 1 to the left
         player1.transform.position = new Vector3(0, 0, 0);
+    }
+
+    public void RestartGame()
+    {
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
