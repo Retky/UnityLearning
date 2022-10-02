@@ -6,6 +6,12 @@
 
 [![](https://img.shields.io/badge/Unity-2021.3.x-ff7b00)](https://unity.com/download)
 
+## 📷 Preview
+### Prototype 1
+> Drive a car around a track and collide with other cars or any other object you can find.
+
+![](.preview/prototype1.png)
+
 ## 🚀 Getting Started
 
 ### 📋 Prerequisites
