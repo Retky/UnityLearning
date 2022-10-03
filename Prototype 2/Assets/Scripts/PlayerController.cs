@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Player movement
+    // Player inputs
     private float horizontalInput;
     private float verticalInput;
+
+    // Initialize variables
     private float speed = 25.0f;
-    public float xRange = 10.0f;
-    public float frontRange = 13.0f;
-    public float backRange = -1.0f;
+    [serializField] private float xRange = 10.0f;
+    [serializField] private float frontRange = 13.0f;
+    [serializField] private float backRange = -1.0f;
     public int lives = 3;
 
     // Player projectile
     public GameObject projectile;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // End game if player runs out of lives
         if (lives < 1)
@@ -29,6 +31,15 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        // Launch a projectile from the player
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(projectile, transform.position, projectile.transform.rotation);
+        }
+    }
+
+    private void FixedUpdate()
+    {
         // Prevent the player from going out of bounds
         if (transform.position.x < -xRange)
         {
@@ -52,21 +63,14 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
         transform.Translate(Vector3.forward * Time.deltaTime * verticalInput * speed);
 
-
-        // Launch a projectile from the player
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(projectile, transform.position, projectile.transform.rotation);
-        }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
             lives--;
-            Debug.Log("Lives: " + lives);
         }
     }
 }
