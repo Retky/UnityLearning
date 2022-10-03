@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // End game if player runs out of lives
-        if (lives < 1)
+        if (lives <= 0)
         {
             FindObjectOfType<GameManager>().EndGame();
         }
@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             lives--;
+            FindObjectOfType<GameManager>().UpdateLiveText();
         }
     }
 }
