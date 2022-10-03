@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
 
     // Initialize variables
     private float speed = 25.0f;
-    [serializField] private float xRange = 10.0f;
-    [serializField] private float frontRange = 13.0f;
-    [serializField] private float backRange = -1.0f;
+    [SerializeField] private float xRange = 10.0f;
+    [SerializeField] private float frontRange = 13.0f;
+    [SerializeField] private float backRange = -1.0f;
     public int lives = 3;
 
     // Player projectile
