@@ -619,7 +619,7 @@ MonoBehaviour:
   hunger: 0
   maxHunger: 6
   hungerIncrease: 2
-  timeToAdd: 1
+  timeToAdd: 3
   points: 20
   hungerBar: {fileID: 3011680930398644679}
   timeText: {fileID: 2875945412453705640, guid: 9188de0536d64de4fb8a62b57bdc4e9c, type: 3}

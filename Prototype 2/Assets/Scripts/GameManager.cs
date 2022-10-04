@@ -12,20 +12,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI gameOverText;
-    public bool isGameActive = true;
+    public bool isGameActive = false;
     public float score = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
-        // Set the timer text
+        Debug.Log("Game started");
+        // Set texts
         timerText.text = "Time: " + timer.ToString("F0");
-
-        // Set the lives text
         livesText.text = "Lives: " + player.GetComponent<PlayerController>().lives.ToString();
-
-        // Set the score text
         scoreText.text = "Score: " + score.ToString();
+
+        // Set game active
+        isGameActive = true;
     }
 
     // Update is called once per frame
