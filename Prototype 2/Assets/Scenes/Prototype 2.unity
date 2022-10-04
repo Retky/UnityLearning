@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a802d1cacdbbb224a94a83c470ad8ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 20854167}
   animalPrefabs:
   - {fileID: 3019107071612500601, guid: 21f5132e26b39ff4588dbeb1be1e31b7, type: 3}
   - {fileID: 2401683896389918568, guid: cb38cb3374fb3ac4594041c635753d98, type: 3}

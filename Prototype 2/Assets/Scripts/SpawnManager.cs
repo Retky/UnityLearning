@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameManager gameManager;
     // Initialize array for locading enemy prefabs
     public GameObject[] animalPrefabs;
     public GameObject player;
@@ -24,23 +25,29 @@ public class SpawnManager : MonoBehaviour
     // Spawn random animal
     void SpawnRandomAnimal()
     {
-        // Set index for ramdom animalPrefabs
+        if (gameManager.isGameActive)
+        {
+            // Set index for ramdom animalPrefabs
         int animalIndex = Random.Range(0, animalPrefabs.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-15, 15), 0, 30);
 
         // Spawn animal at random location
         Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+        }
     }
 
     // Spawn aggresive animal
     void SpawnAgressiveAnimal()
     {
-        // Set index for ramdom animalPrefabs
-        int animalIndex = Random.Range(0, animalPrefabs.Length);
-        int side = Random.Range(0, 2);
-        Vector3 spawnPos = new Vector3(agressiveSpawnSide[side], 0, Random.Range(2, 25));
+        if (gameManager.isGameActive)
+        {
+            // Set index for ramdom animalPrefabs
+            int animalIndex = Random.Range(0, animalPrefabs.Length);
+            int side = Random.Range(0, 2);
+            Vector3 spawnPos = new Vector3(agressiveSpawnSide[side], 0, Random.Range(2, 25));
 
-        // Spawn animal at random location looking at player
-        Instantiate(animalPrefabs[animalIndex], spawnPos, Quaternion.LookRotation(player.transform.position-spawnPos));
+            // Spawn animal at random location looking at player
+            Instantiate(animalPrefabs[animalIndex], spawnPos, Quaternion.LookRotation(player.transform.position-spawnPos));
+        }
     }
 }
