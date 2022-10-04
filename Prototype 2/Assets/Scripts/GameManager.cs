@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
         {
             gameOverText.gameObject.SetActive(true);
             isGameActive = false;
-            Invoke("Restart", 4f);
+            Invoke("MultiplyScore", 3f);
+
+            Invoke("Restart", 5f);
         }
     }
 
@@ -86,6 +88,17 @@ public class GameManager : MonoBehaviour
         {
             score += points;
             scoreText.text = "Score: " + score.ToString();
+        }
+    }
+
+    // Multiply the score by lives
+    public void MultiplyScore()
+    {
+        int playerLives = player.GetComponent<PlayerController>().lives;
+        for (int i = 0; i < playerLives; i++)
+        {
+            score *= 2;
+            scoreText.text = "Score: " + Mathf.Round(score).ToString();
         }
     }
 }
