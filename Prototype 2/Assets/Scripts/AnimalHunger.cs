@@ -10,6 +10,7 @@ public class AnimalHunger : MonoBehaviour
     public int timeToAdd = 1;
     public int points = 10;
     public HungerBar hungerBar;
+    public GameObject timeText;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class AnimalHunger : MonoBehaviour
     // OnTriggerEnter is called when the Collider other enters the trigger
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Food"))
+        if (other.gameObject.CompareTag("Food") && hunger < maxHunger)
         {
             IncreaseHunger();
         }
@@ -45,6 +46,7 @@ public class AnimalHunger : MonoBehaviour
         if (hunger == maxHunger)
         {
             gameObject.tag = "Friendly";
+            Instantiate(timeText, transform.position, Quaternion.Euler(90, 0, 0));
             FindObjectOfType<GameManager>().AddTime(timeToAdd);
             FindObjectOfType<GameManager>().AddScore(points);
             gameObject.GetComponent<MoveForward>().speed = 8;

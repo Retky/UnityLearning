@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnRandomAnimal", spawnDelay, Random.Range(spawnInterval[0], spawnInterval[1]));
-        InvokeRepeating("SpawnAgressiveAnimal", spawnDelay, Random.Range(aggresiveSpawnInterval[0], aggresiveSpawnInterval[1]));
+        InvokeRepeating("SpawnAgressiveAnimal", 1.5f, Random.Range(aggresiveSpawnInterval[0], aggresiveSpawnInterval[1]));
     }
 
     // Spawn random animal

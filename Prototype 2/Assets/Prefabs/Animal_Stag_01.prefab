@@ -112,6 +112,7 @@ MonoBehaviour:
   timeToAdd: 1
   points: 50
   hungerBar: {fileID: 8867382663808533111}
+  timeText: {fileID: 2875945412453705640, guid: 9188de0536d64de4fb8a62b57bdc4e9c, type: 3}
 --- !u!1 &3019107071612503031
 GameObject:
   m_ObjectHideFlags: 0
