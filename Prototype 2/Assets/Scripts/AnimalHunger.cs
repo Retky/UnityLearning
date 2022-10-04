@@ -7,22 +7,14 @@ public class AnimalHunger : MonoBehaviour
     public int hunger = 0;
     public int maxHunger = 6;
     public int hungerIncrease = 1;
+    public int timeToAdd = 1;
+    public int points = 10;
     public HungerBar hungerBar;
 
     // Start is called before the first frame update
     void Start()
     {
         hungerBar.SetMaxHunger(maxHunger);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (hunger == maxHunger)
-        {
-            gameObject.tag = "Friendly";
-            gameObject.GetComponent<MoveForward>().speed = 8;
-        }
     }
 
     // OnTriggerEnter is called when the Collider other enters the trigger
@@ -40,6 +32,22 @@ public class AnimalHunger : MonoBehaviour
         {
             hunger += hungerIncrease;
             hungerBar.SetHunger(hunger);
+        }
+
+        if (hunger == maxHunger)
+        {
+            FriendlyAnimal();
+        }
+    }
+
+    private void FriendlyAnimal()
+    {
+        if (hunger == maxHunger)
+        {
+            gameObject.tag = "Friendly";
+            FindObjectOfType<GameManager>().AddTime(timeToAdd);
+            FindObjectOfType<GameManager>().AddScore(points);
+            gameObject.GetComponent<MoveForward>().speed = 8;
         }
     }
 }

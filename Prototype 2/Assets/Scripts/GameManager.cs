@@ -7,12 +7,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    [SerializeField] private float timer = 60.0f;
+    [SerializeField] private float timer = 30.0f;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI gameOverText;
     public bool isGameActive = true;
+    public float score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
 
         // Set the lives text
         livesText.text = "Lives: " + player.GetComponent<PlayerController>().lives.ToString();
+
+        // Set the score text
+        scoreText.text = "Score: " + score.ToString();
     }
 
     // Update is called once per frame
@@ -31,6 +35,8 @@ public class GameManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
             timerText.text = "Time: " + timer.ToString("0");
+            score += Time.deltaTime * 10;
+            scoreText.text = "Score: " + Mathf.Round(score).ToString();
 
             if (timer <= 0)
             {
@@ -67,6 +73,19 @@ public class GameManager : MonoBehaviour
     // Add time to the timer
     public void AddTime(float time)
     {
-        timer += time;
+        if (isGameActive)
+        {
+            timer += time;
+        }
+    }
+
+    // Add points to the score
+    public void AddScore(int points)
+    {
+        if (isGameActive)
+        {
+            score += points;
+            scoreText.text = "Score: " + score.ToString();
+        }
     }
 }

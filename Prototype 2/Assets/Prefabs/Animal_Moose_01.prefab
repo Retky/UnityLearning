@@ -619,6 +619,8 @@ MonoBehaviour:
   hunger: 0
   maxHunger: 6
   hungerIncrease: 2
+  timeToAdd: 1
+  points: 20
   hungerBar: {fileID: 3011680930398644679}
 --- !u!1 &2401683896389919440
 GameObject:
