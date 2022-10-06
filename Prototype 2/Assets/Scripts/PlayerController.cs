@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float xRange = 10.0f;
     [SerializeField] private float frontRange = 13.0f;
     [SerializeField] private float backRange = -1.0f;
-    public int lives = 3;
+    [HideInInspector] public int lives;
 
     // Player projectile
     public GameObject projectile;
