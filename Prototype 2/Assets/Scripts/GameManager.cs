@@ -7,7 +7,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    [SerializeField] private float timer = 30.0f;
+    [SerializeField] private float gameTime = 30.0f;
+    private float timer;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         // Set values
-        timer = 30.0f;
+        timer = gameTime;
         score = 0;
         player.GetComponent<PlayerController>().lives = 3;
 
@@ -65,12 +66,6 @@ public class GameManager : MonoBehaviour
             isGameActive = false;
             Invoke("MultiplyScore", 3f);
         }
-    }
-
-    // Restart the game
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Add time to the timer

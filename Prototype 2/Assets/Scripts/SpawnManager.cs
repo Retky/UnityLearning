@@ -25,7 +25,6 @@ public class SpawnManager : MonoBehaviour
     // Spawn random animal
     void SpawnRandomAnimal()
     {
-        Debug.Log(gameManager.isGameActive);
         if (gameManager.isGameActive)
         {
             // Set index for ramdom animalPrefabs
