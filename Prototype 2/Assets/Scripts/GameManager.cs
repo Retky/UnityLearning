@@ -11,13 +11,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private GameObject gameOverScreen;
     public bool isGameActive = false;
     public float score = 0;
 
     public void StartGame()
     {
-        Debug.Log("Game started");
+        // Set values
+        timer = 30.0f;
+        score = 0;
+        player.GetComponent<PlayerController>().lives = 3;
+
         // Set texts
         timerText.text = "Time: " + timer.ToString("F0");
         livesText.text = "Lives: " + player.GetComponent<PlayerController>().lives.ToString();
@@ -57,11 +61,9 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive == true)
         {
-            gameOverText.gameObject.SetActive(true);
+            gameOverScreen.SetActive(true);
             isGameActive = false;
             Invoke("MultiplyScore", 3f);
-
-            Invoke("Restart", 5f);
         }
     }
 
