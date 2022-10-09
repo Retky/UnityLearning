@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject scoreboard;
     public bool isGameActive = false;
     public float score = 0;
 
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         if (isGameActive == true)
         {
             gameOverScreen.SetActive(true);
+            scoreboard.SetActive(true);
             isGameActive = false;
             Invoke("MultiplyScore", 3f);
         }
