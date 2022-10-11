@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1021885123}
-  gameTime: 3
+  gameTime: 25
   timerText: {fileID: 688196015}
   livesText: {fileID: 1277925641}
   scoreText: {fileID: 1428165837}
