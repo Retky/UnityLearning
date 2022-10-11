@@ -160,7 +160,6 @@ MonoBehaviour:
   finalScoreText: {fileID: 1205005451}
   gameOverScreen: {fileID: 1557644100}
   isGameActive: 0
-  score: 0
 --- !u!4 &20854168
 Transform:
   m_ObjectHideFlags: 0
@@ -889,14 +888,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 5
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 5
+  m_CharacterValidation: 4
   m_RegexValue: 
   m_GlobalPointSize: 25
   m_CharacterLimit: 6
@@ -2845,7 +2844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3f207571a9cca4d9f502a0976c113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalScore: {fileID: 0}
+  nameInput: {fileID: 420830127}
 --- !u!1 &1248055229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3125,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1235184490}
         m_TargetAssemblyTypeName: Scoreboard, Assembly-CSharp
-        m_MethodName: SaveScoreList
+        m_MethodName: AddScoreEntry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

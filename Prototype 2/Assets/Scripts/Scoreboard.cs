@@ -9,6 +9,7 @@ public class Scoreboard : MonoBehaviour
   private Transform entryTemplate;
   [SerializeField] private TMP_InputField nameInput;
   private List<ScoreEntry> scoreEntryList = new List<ScoreEntry>();
+  private float templateHeight = 40f;
 
   private void Awake()
   {
@@ -16,36 +17,44 @@ public class Scoreboard : MonoBehaviour
     entryTemplate = entryContainer.Find("Score Template");
 
     entryTemplate.gameObject.SetActive(false);
+  }
 
-    float templateHeight = 40f;
+  private void UpdateBoard()
+  {
+    foreach (Transform child in entryContainer)
+    {
+      if (child == entryTemplate) continue;
+      Destroy(child.gameObject);
+    }
 
     scoreEntryList.Sort((a, b) => b.score.CompareTo(a.score));
 
-    scoreEntryList.ForEach(scoreEntry =>
+    for (int i = 0; i < 10; i++)
     {
+      if (i >= scoreEntryList.Count) break;
       Transform entryTransform = Instantiate(entryTemplate, entryContainer);
       RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-      entryRectTransform.anchoredPosition = new Vector2(0, -(templateHeight * scoreEntryList.IndexOf(scoreEntry)));
+      entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * i);
       entryTransform.gameObject.SetActive(true);
 
-      entryTransform.Find("Rank").GetComponent<TextMeshProUGUI>().text = (scoreEntryList.IndexOf(scoreEntry) + 1).ToString();
-      entryTransform.Find("Score").GetComponent<TextMeshProUGUI>().text = scoreEntry.score.ToString();
-      entryTransform.Find("Name").GetComponent<TextMeshProUGUI>().text = scoreEntry.name;
-    });
+      entryTransform.Find("Rank").GetComponent<TextMeshProUGUI>().text = (i + 1).ToString();
+      entryTransform.Find("Name").GetComponent<TextMeshProUGUI>().text = scoreEntryList[i].name;
+      entryTransform.Find("Score").GetComponent<TextMeshProUGUI>().text = scoreEntryList[i].score.ToString();
+    }
   }
 
   public void AddScoreEntry()
   {
     int score = Mathf.RoundToInt(GameManager.score);
-    Debug.Log(score);
     string name = nameInput.text;
-    Debug.Log(name);
+
     // Create ScoreEntry
     ScoreEntry scoreElement = new ScoreEntry { score = score, name = name };
 
     // Add to list
     scoreEntryList.Add(scoreElement);
-    Debug.Log(scoreEntryList.Count);
+
+    UpdateBoard();
   }
 
   public void SaveScoreList()
