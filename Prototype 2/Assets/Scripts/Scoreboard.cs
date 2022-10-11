@@ -53,6 +53,16 @@ public class Scoreboard : MonoBehaviour
     scoreEntryList.Add(scoreElement);
   }
 
+  public void SaveScoreList()
+  {
+
+  }
+
+  public void LoadScoreList()
+  {
+
+  }
+
   class ScoreEntry
   {
     public int score;

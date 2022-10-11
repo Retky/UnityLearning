@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject scoreboard;
     public bool isGameActive = false;
     public float score = 0;
 
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         if (isGameActive == true)
         {
             gameOverScreen.SetActive(true);
-            scoreboard.SetActive(true);
+            finalScoreText.text = Mathf.Round(score).ToString();     
             isGameActive = false;
             Invoke("MultiplyScore", 3f);
         }
