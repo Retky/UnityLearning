@@ -7,6 +7,7 @@ public class Scoreboard : MonoBehaviour
 {
   private Transform entryContainer;
   private Transform entryTemplate;
+  [SerializeField] private TMP_InputField nameInput;
   private List<ScoreEntry> scoreEntryList = new List<ScoreEntry>();
 
   private void Awake()
@@ -17,17 +18,6 @@ public class Scoreboard : MonoBehaviour
     entryTemplate.gameObject.SetActive(false);
 
     float templateHeight = 40f;
-
-    AddScoreEntry(1000, "AAA");
-    AddScoreEntry(900, "BBB");
-    AddScoreEntry(400, "CCC");
-    AddScoreEntry(1200, "DDD");
-    AddScoreEntry(500, "EEE");
-    AddScoreEntry(700, "FFF");
-    AddScoreEntry(800, "GGG");
-    AddScoreEntry(900, "HHH");
-    AddScoreEntry(1000, "III");
-    AddScoreEntry(1100, "JJJ");
 
     scoreEntryList.Sort((a, b) => b.score.CompareTo(a.score));
 
@@ -44,13 +34,18 @@ public class Scoreboard : MonoBehaviour
     });
   }
 
-  public void AddScoreEntry(int score, string name)
+  public void AddScoreEntry()
   {
+    int score = Mathf.RoundToInt(GameManager.score);
+    Debug.Log(score);
+    string name = nameInput.text;
+    Debug.Log(name);
     // Create ScoreEntry
     ScoreEntry scoreElement = new ScoreEntry { score = score, name = name };
 
     // Add to list
     scoreEntryList.Add(scoreElement);
+    Debug.Log(scoreEntryList.Count);
   }
 
   public void SaveScoreList()

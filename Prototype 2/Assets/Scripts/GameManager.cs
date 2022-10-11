@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private GameObject gameOverScreen;
     public bool isGameActive = false;
-    public float score = 0;
+    public static float score = 0;
 
     public void StartGame()
     {
