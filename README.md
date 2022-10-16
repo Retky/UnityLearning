@@ -7,17 +7,16 @@
 [![](https://img.shields.io/badge/Blender-2.93.5-EA7702.svg?logo=blender&logoColor=white)](https://www.blender.org/download/)
 [![](https://img.shields.io/badge/C%23-239120.svg?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 
-## Preview
-### Prototype 2
-> How long could you be able to avoid the stampede and feed the animals to calm them out? </br> *Game scoreboard in the repo // Global scoreboard in the release!!
-
-![](.preview/prototype2.png)
-
 ## 📷 Preview
 ### Prototype 1
 > Drive a car around a track and collide with other cars or any other object you can find.
 
 ![](.preview/prototype1.png)
+
+### Prototype 2
+> How long could you be able to avoid the stampede and feed the animals to calm them out? </br> *Game scoreboard in the repo // Global scoreboard in the release!!
+
+![](.preview/prototype2.png)
 
 ## 🚀 Getting Started
 
