@@ -8,8 +8,9 @@
 [![](https://img.shields.io/badge/C%23-239120.svg?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 
 ## Preview
-### Prototaype 2
+### Prototype 2
 > How long could you be able to avoid the stampede and feed the animals to calm them out? </br> *Game scoreboard in the repo // Global scoreboard in the release!!
+
 ![](.preview/prototype2.png)
 
 ## 🚀 Getting Started
