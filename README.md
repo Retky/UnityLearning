@@ -3,8 +3,15 @@
 > In this repository, are the projects that I have done following the Unity Learning pathways and tutorials from the official Unity Learn website including some features that I have added to the projects to improve their performance and functionality. I have also added some of my own projects based on the Unity Learning tutorials.
 
 ## 🛠️ Build on
+[![](https://img.shields.io/badge/Unity-2021.3.x-100000.svg?logo=unity&logoColor=white)](https://unity.com/download)
+[![](https://img.shields.io/badge/Blender-2.93.5-EA7702.svg?logo=blender&logoColor=white)](https://www.blender.org/download/)
+[![](https://img.shields.io/badge/C%23-239120.svg?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 
-[![](https://img.shields.io/badge/Unity-2021.3.x-ff7b00)](https://unity.com/download)
+## Preview
+### Prototype 2
+> How long could you be able to avoid the stampede and feed the animals to calm them out? </br> *Game scoreboard in the repo // Global scoreboard in the release!!
+
+![](.preview/prototype2.png)
 
 ## 📷 Preview
 ### Prototype 1
@@ -84,6 +91,6 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-Copyright (c) 2022
+Copyright (c) 2022 J. Luis Arredondo
 
-See [Licence](./LICENSE)
+See [Licence](./LICENSE).
