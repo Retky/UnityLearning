@@ -81,4 +81,9 @@ public class TextBehavior : MonoBehaviour
             throw new System.Exception("The number is even");
         }
     }
+
+    public void ChangeText(string str)
+    {
+        displayText.text = str;
+    }
 }
