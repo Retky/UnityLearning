@@ -3049,6 +3049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3f207571a9cca4d9f502a0976c113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pluginManager: {fileID: 424511489}
   nameInput: {fileID: 420830127}
 --- !u!1 &1248055229
 GameObject:
@@ -3657,7 +3658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1374411547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3725,7 +3726,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 424511490}
         m_TargetAssemblyTypeName: PluginManager, Assembly-CSharp
-        m_MethodName: Test
+        m_MethodName: TestSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

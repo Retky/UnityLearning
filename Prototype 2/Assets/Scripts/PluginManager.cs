@@ -6,10 +6,18 @@ using System.Runtime.InteropServices;
 public class PluginManager : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void TestPlugin();
+    private static extern void LoadLocalStore();
 
-    public void Test()
+    [DllImport("__Internal")]
+    private static extern void SaveLocalStore(string jsonString);
+
+    private void Start()
     {
-        TestPlugin();
+        LoadLocalStore();
+    }
+
+    public void SaveScore(string jsonString)
+    {
+        SaveLocalStore(jsonString);
     }
 }

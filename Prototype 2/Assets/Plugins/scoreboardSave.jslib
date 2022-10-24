@@ -1,5 +1,22 @@
 mergeInto(LibraryManager.library, {
-  TestPlugin: function() {
-    window.alert('Plugins are working!');
+  LoadLocalStore: function() {
+    try {
+      let localStore = localStorage.getItem('scoreBoard');
+      myGameInstance.SendMessage('ScoreBoard', 'LoadScoreList', localStore);
+    }
+    catch (e) {
+      return "";
+    }
+  },
+  SaveLocalStore: function(jsonString) {
+    parseString = UTF8ToString(jsonString);
+    console.log(parseString);
+    try {
+      localStorage.setItem('scoreBoard', parseString);
+    }
+    catch (e) {
+      return false;
+    }
+    return true;
   }
 });

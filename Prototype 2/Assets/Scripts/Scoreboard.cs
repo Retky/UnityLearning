@@ -7,6 +7,7 @@ public class Scoreboard : MonoBehaviour
 {
   private Transform entryContainer;
   private Transform entryTemplate;
+  [SerializeField] private GameObject pluginManager;
   [SerializeField] private TMP_InputField nameInput;
   private List<ScoreEntry> scoreEntryList = new List<ScoreEntry>();
   private float templateHeight = 40f;
@@ -54,17 +55,20 @@ public class Scoreboard : MonoBehaviour
     // Add to list
     scoreEntryList.Add(scoreElement);
 
+    SaveScoreList();
     UpdateBoard();
   }
 
   public void SaveScoreList()
   {
-
+    string[] scoreList = { "{FAKE, 644}", "{FAKE2, 123}" };
+    Debug.Log(scoreList);
+    pluginManager.GetComponent<PluginManager>().SaveScore(JsonUtility.ToJson(scoreList));
   }
 
-  public void LoadScoreList()
+  public void LoadScoreList(string str)
   {
-
+    scoreEntryList = JsonUtility.FromJson<List<ScoreEntry>>(str);
   }
 
   class ScoreEntry
