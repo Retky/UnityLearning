@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,9 @@ public class PluginManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SaveLocalStore(string jsonString);
 
-    private void Start()
+    
+
+    public void loadScore()
     {
         LoadLocalStore();
     }

@@ -2,7 +2,7 @@ mergeInto(LibraryManager.library, {
   LoadLocalStore: function() {
     try {
       let localStore = localStorage.getItem('scoreBoard');
-      myGameInstance.SendMessage('ScoreBoard', 'LoadScoreList', localStore);
+      myGameInstance.SendMessage('Scoreboard', 'LoadScoreList', localStore);
     }
     catch (e) {
       return "";
