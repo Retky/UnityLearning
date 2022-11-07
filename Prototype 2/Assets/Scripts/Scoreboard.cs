@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class Scoreboard : MonoBehaviour
 {
   private Transform entryContainer;
   private Transform entryTemplate;
+  [SerializeField] private GameObject pluginManager;
   [SerializeField] private TMP_InputField nameInput;
-  private List<ScoreEntry> scoreEntryList = new List<ScoreEntry>();
+  public ScoreList scoreList;
   private float templateHeight = 40f;
+
+  private void Start()
+  {
+    pluginManager.GetComponent<PluginManager>().loadScore();
+  }
 
   private void Awake()
   {
@@ -27,19 +34,19 @@ public class Scoreboard : MonoBehaviour
       Destroy(child.gameObject);
     }
 
-    scoreEntryList.Sort((a, b) => b.score.CompareTo(a.score));
+    scoreList.scoreEntryList.Sort((a, b) => b.score.CompareTo(a.score));
 
     for (int i = 0; i < 10; i++)
     {
-      if (i >= scoreEntryList.Count) break;
+      if (i >= scoreList.scoreEntryList.Count) break;
       Transform entryTransform = Instantiate(entryTemplate, entryContainer);
       RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
       entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * i);
       entryTransform.gameObject.SetActive(true);
 
       entryTransform.Find("Rank").GetComponent<TextMeshProUGUI>().text = (i + 1).ToString();
-      entryTransform.Find("Name").GetComponent<TextMeshProUGUI>().text = scoreEntryList[i].name;
-      entryTransform.Find("Score").GetComponent<TextMeshProUGUI>().text = scoreEntryList[i].score.ToString();
+      entryTransform.Find("Name").GetComponent<TextMeshProUGUI>().text = scoreList.scoreEntryList[i].name;
+      entryTransform.Find("Score").GetComponent<TextMeshProUGUI>().text = scoreList.scoreEntryList[i].score.ToString();
     }
   }
 
@@ -52,24 +59,34 @@ public class Scoreboard : MonoBehaviour
     ScoreEntry scoreElement = new ScoreEntry { score = score, name = name };
 
     // Add to list
-    scoreEntryList.Add(scoreElement);
+    scoreList.scoreEntryList.Add(scoreElement);
 
+    SaveScoreList();
     UpdateBoard();
   }
 
   public void SaveScoreList()
   {
-
+    pluginManager.GetComponent<PluginManager>().SaveScore(JsonUtility.ToJson(scoreList));
   }
 
-  public void LoadScoreList()
+  public void LoadScoreList(string str)
   {
-
+    Debug.Log(str);
+    scoreList = JsonUtility.FromJson<ScoreList>(str);
+    UpdateBoard();
   }
+}
 
-  class ScoreEntry
-  {
-    public int score;
-    public string name;
-  }
+[Serializable]
+public class ScoreList
+{
+  public List<ScoreEntry> scoreEntryList = new List<ScoreEntry>();
+}
+
+[Serializable]
+public class ScoreEntry
+{
+  public int score;
+  public string name;
 }
